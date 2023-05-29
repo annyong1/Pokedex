@@ -18,19 +18,19 @@ let pokemonList = [
 
 for (let i = 0; i < pokemonList.length; i++) {
     if (pokemonList[i].height >= 1.6) {
-        document.write
-        
-        (pokemonList[i].name + pokemonList[i].height + " - The BIGGEST!");
+        document.write('</p>');
+        document.write(pokemonList[i].name + " (height: " + pokemonList[i].height + ")" + " - The BIGGEST!");
+        document.write('</p>');
 
     } else if (pokemonList[i].height < 1.6 && pokemonList[i].height > 1) {
-        document.write
-        
-        (pokemonList[i].name + pokemonList[i].height + " - The Averagest!");
+        document.write('</p>');
+        document.write(pokemonList[i].name + " (height: " + pokemonList[i].height + ")" + " - The Averagest!");
+        document.write('</p>');
 
     } else {
-        document.write
-        
-        (pokemonList[i].name + pokemonList[i].height + "- The smallest!");
+        document.write('</p>');
+        document.write(pokemonList[i].name + " (height: " + pokemonList[i].height + ")" + " - The smallest!");
+        document.write('</p>');
 
     }
 }
