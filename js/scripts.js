@@ -33,19 +33,19 @@ let pokemonRepository = (function () {
 })();
 
 function listPokemon(pokemon) {
-    if (pokemonList[i].height >= 1.6) {
+    if (pokemon.height >= 1.6) {
         document.write('</p>');
-        document.write(pokemonList[i].name + " (height: " + pokemonList[i].height + ")" + " - The BIGGEST!");
+        document.write(pokemon.name + " (height: " + pokemon.height + ")" + " - The BIGGEST!");
         document.write('</p>');
 
-    } else if (pokemonList[i].height < 1.6 && pokemonList[i].height > 1) {
+    } else if (pokemon.height < 1.6 && pokemon.height > 1) {
         document.write('</p>');
-        document.write(pokemonList[i].name + " (height: " + pokemonList[i].height + ")" + " - The Averagest!");
+        document.write(pokemon.name + " (height: " + pokemon.height + ")" + " - The Averagest!");
         document.write('</p>');
 
     } else {
         document.write('</p>');
-        document.write(pokemonList[i].name + " (height: " + pokemonList[i].height + ")" + " - The smallest!");
+        document.write(pokemon.name + " (height: " + pokemon.height + ")" + " - The smallest!");
         document.write('</p>');
 
     }
