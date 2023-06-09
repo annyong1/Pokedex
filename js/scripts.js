@@ -52,7 +52,10 @@ function listPokemon(pokemon) {
     
 }
 
-pokemonRepository.getAll().forEach(listPokemon);
+pokemonRepository.getAll().forEach( e=> {
+    listPokemon(e)
+});
+
 
 // for (let i = 0; i < pokemonList.length; i++) {
     // if (pokemonList[i].height >= 1.6) {
