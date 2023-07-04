@@ -58,12 +58,30 @@ let pokemonRepository = (function () {
         });
     }
 
-    function showDetails(item) {
-        pokemonRepository.loadDetails(item).then(function () {
-          console.log(item);
+    function showDetails(pokemon) {
+        loadDetails(pokemon).then(() => {
+            pokemonModal.showModal(pokemon);
         });
-      }
-    
+    }
+
+    // Pull details about clicked Pokemon from API and add them to the clicked Pokemon object
+    function loadDetails(pokemon) {
+        showLoadingMessage();
+        let url = pokemon.detailsUrl;
+        return fetch(url)
+            .then((response) => response.json())
+            .then((details) => {
+                pokemon.imageUrl = details.sprites.front_default;
+                pokemon.height = details.height;
+                pokemon.weight = details.weight;
+                pokemon.types = details.types;
+                hideLoadingMessage();
+            })
+            .catch((e) => {
+                hideLoadingMessage();
+                console.error(e);
+            });
+    }
 
     return {
         add: add,
