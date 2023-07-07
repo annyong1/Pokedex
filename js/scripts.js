@@ -73,8 +73,6 @@ let pokemonRepository = (function () {
             .then((details) => {
                 pokemon.imageUrl = details.sprites.front_default;
                 pokemon.height = details.height;
-                pokemon.weight = details.weight;
-                pokemon.types = details.types;
                 hideLoadingMessage();
             })
             .catch((e) => {
@@ -82,6 +80,19 @@ let pokemonRepository = (function () {
                 console.error(e);
             });
     }
+
+    function showLoadingMessage() {
+        const messageContainer = document.getElementById('loading-message');
+        messageContainer.classList.remove('hide-loading-message');
+        messageContainer.classList.add('show-loading-message');
+    }
+
+    function hideLoadingMessage() {
+        const messageContainer = document.getElementById('loading-message');
+        messageContainer.classList.remove('show-loading-message');
+        messageContainer.classList.add('hide-loading-message');
+    }
+
 
     return {
         add: add,
@@ -92,6 +103,103 @@ let pokemonRepository = (function () {
         showDetails: showDetails
     };
 })();
+
+const pokemonModal = (function () {
+    function makeModalCloseButton() {
+        let closeButtonElement = document.createElement('button');
+        closeButtonElement.classList.add('pokedex-modal-close');
+        closeButtonElement.innerText = 'Close';
+        closeButtonElement.addEventListener('click', hideModal);
+
+        return closeButtonElement;
+    }
+
+    function makePokemonImg({ imageUrl }) {
+        // let imgContainer = document.querySelector('.pokemon-img-container');
+        // let pokemonImg = document.createElement('img');
+        // pokemonImg.src = imageUrl;
+        // pokemonImg.classList.add('pokemon-img');
+        // imgContainer.appendChild(pokemonImg);
+        // return imgContainer;
+    }
+
+    function makePokemonHeightAndWeight({ height, weight }) {
+        // let physicalTraitContainer = document.querySelector('#about-screen');
+        // let pysicalTraits = `Height: ${height}` + '<br>' + `Weight: ${weight}`;
+        // physicalTraitContainer.innerHTML = pysicalTraits;
+        // return physicalTraitContainer;
+    }
+
+    function makePokemonType({ types }) {
+        // let typeContainer = document.querySelector('#type-screen');
+        // let pokemonType = types[0].type.name;
+        // typeContainer.innerHTML = pokemonType;
+        // return typeContainer;
+    }
+
+    // Start of the Pokemon Modal
+
+    function showModal(pokemon) {
+        console.log(pokemon);
+        // Make and edit all details in modal
+        makePokemonImg(pokemon);
+        makePokemonHeightAndWeight(pokemon);
+        makePokemonType(pokemon);
+
+        // Append modal and close button to container
+        let modalContainer = document.querySelector('#pokedex-modal-container');
+        let modal = document.querySelector('.pokedex-modal');
+        modal.appendChild(makeModalCloseButton());
+        modalContainer.appendChild(modal);
+
+        // Display modal container and modal
+        modalContainer.classList.add('is-visible');
+        modal.style.display = 'inline-block';
+
+        // Close modal when clicked outside of it
+        modalContainer.addEventListener('click', (e) => {
+            let target = e.target;
+            if (target === modalContainer) {
+                hideModal();
+            }
+        });
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+                pokemonModal.hideModal();
+            }
+        });
+    }
+
+    function hideModal() {
+        let modalContainer = document.querySelector('#pokedex-modal-container');
+
+        // Clear the previous modal content and close button
+        if (document.querySelector('.pokedex-modal-close')) {
+            document.querySelector('.pokedex-modal-close').remove();
+        }
+
+        if (document.querySelector('.pokemon-img')) {
+            document.querySelector('.pokemon-img').remove();
+        }
+
+        if (document.querySelector('#about-screen').innerHTML !== '') {
+            document.querySelector('#about-screen').innerHTML = '';
+        }
+
+        if (document.querySelector('#type-screen').innerHTML !== '') {
+            document.querySelector('#type-screen').innerHTML = '';
+        }
+
+        modalContainer.classList.remove('is-visible');
+    }
+
+    return {
+        showModal: showModal,
+        hideModal: hideModal,
+    };
+})();
+
 
 // function listPokemon(pokemon) {
 //     if (pokemon.height >= 1.6) {
