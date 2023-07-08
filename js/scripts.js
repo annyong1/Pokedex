@@ -20,7 +20,7 @@ let pokemonRepository = (function () {
         pokemonList.appendChild(listpokemon);
         //document.querySelector('button');
         button.addEventListener('click', function (event) {
-            showDetails(pokemon);
+            (pokemon);
         });
     }
 
@@ -63,7 +63,40 @@ let pokemonRepository = (function () {
           console.log(item);
         });
       }
+
+    function makePokemonModal(pokemon) {
+        const modalContainer = document.querySelector('.pokedex-modal');
+
+        const pokemonName = makePokemonName(pokemon);
+        const pokemonImage = makePokemonImage(pokemon);
+        const pokemonDetails = makePokemonDetails(pokemon);
+
+        modalContainer.appendChild(pokemonName);
+        modalContainer.appendChild(pokemonImage);
+        modalContainer.appendChild(pokemonDetails);
+    }
     
+    function makePokemonName(pokemon) {
+        const nameContainer = document.createElement('h3');
+        nameContainer.innerHTML = pokemon.name;
+
+        return nameContainer;
+    }
+
+    function makePokemonImage(pokemon) {
+        const imageContainer = document.createElement('h3');
+        imageContainer.innerHTML = pokemon.image;
+
+        return imageContainer;
+    }
+
+    function makePokemonDetails(pokemon){
+        const detailsContainer = document.createElement('h3');
+        detailsContainer.innerHTML = pokemon.details;
+
+        return detailsContainer;
+    }
+
 
     return {
         add: add,
