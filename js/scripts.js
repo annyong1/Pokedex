@@ -85,6 +85,7 @@ let pokemonRepository = (function () {
         const messageContainer = document.getElementById('loading-message');
         messageContainer.classList.remove('hide-loading-message');
         messageContainer.classList.add('show-loading-message');
+        document.getElementById('loading-message');
     }
 
     function hideLoadingMessage() {
@@ -138,7 +139,7 @@ const pokemonModal = (function () {
     }
 
     // Start of the Pokemon Modal
-
+ 
     function showModal(pokemon) {
         console.log(pokemon);
         // Make and edit all details in modal
@@ -149,7 +150,7 @@ const pokemonModal = (function () {
         // Append modal and close button to container
         let modalContainer = document.querySelector('#pokedex-modal-container');
         let modal = document.querySelector('.pokedex-modal');
-        modal.appendChild(makeModalCloseButton());
+       modal.appendChild(makeModalCloseButton());
         modalContainer.appendChild(modal);
 
         // Display modal container and modal
