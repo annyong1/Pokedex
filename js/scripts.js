@@ -65,6 +65,7 @@ let pokemonRepository = (function () {
             .then((response) => response.json())
             .then((details) => {
                 pokemon.imageUrl = details.sprites.front_default;
+                pokemon.name = details.name;
                 pokemon.height = details.height;
                 pokemon.weight = details.weight;
                 pokemon.types = details.types;
@@ -117,14 +118,14 @@ let pokemonRepository = (function () {
 
     function showModal(pokemon) {
 
-        let pokemonName = document.querySelector(".modal-title");
+        let pokemonName = document.querySelector('.modal-title');
         pokemonName.innerText = pokemon.name;
 
         let pokemonImage = document.querySelector('.pokemon-image');
         pokemonImage.src = pokemon.imageUrl;
 
         let pokemonHeight = document.querySelector('.pokemon-height');
-        pokemonHeight.innerText = 'Height : ' + (pokemon.height / 10) + ' m';
+        pokemonHeight.innerText = 'height : ' + (pokemon.height / 10) + ' m';
 
 
     }
