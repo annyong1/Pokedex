@@ -18,7 +18,6 @@ let pokemonRepository = (function () {
         button.classList.add('button-class');
         listpokemon.appendChild(button);
         pokemonList.appendChild(listpokemon);
-        //document.querySelector('button');
         button.addEventListener('click', function () {
             showDetails(pokemon);
         });
@@ -45,18 +44,53 @@ let pokemonRepository = (function () {
 
     // Open Pokemon Modal on click
     function showDetails(pokemon) {
-        loadDetails(pokemon).then(() => {
-            makePokemonModal(pokemon);
-            showModal(pokemon);
-        });
-    }
-
-    function showDetails(pokemon) {
         pokemonRepository.loadDetails(pokemon).then(function () {
             showModal(pokemon);
             console.log(pokemon);
         });
+
+        let modal = document.createElement('div');
+            modal.classList.add('modal');
+        
+        let closeButtonElement = document.createElement('button');
+        closeButtonElement.classList.add('modal-close');
+        closeButtonElement.innerText = 'Close';
+        closeButtonElement.addEventListener('click', hideDetails);
+
+        modal.appendChild(closeButtonElement);
+        modal.appendChild(titleElement);
+        modal.appendChild(spriteElement);
+        modal.appendChild(contentElement);
+        modalContainer.appendChild(modal);
+
+        modalContainer.classList.add('is-visible');
+
+        modalContainer.addEventListener('click', function (e) {
+            let target = e.target;
+            if (target === modalContainer) {
+                hideDetails();
+            }
+        });
     }
+
+    function hideDetails() { //used to remove the modal displaying a pokemon's details
+        let modalContainer = document.querySelector('.modal-container');
+        modalContainer.classList.remove('is-visible');
+    }
+
+    window.addEventListener('keydown', function (e) {
+        let modalContainer = document.querySelector('.modal-container');
+        if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+            hideDetails();
+        }
+    })
+
+    // function showDetails(pokemon) {
+    //     pokemonRepository.loadDetails(pokemon).then(function () {
+    //         showModal(pokemon);
+    //         console.log(pokemon);
+    //     });
+    // }
 
     // Pull details about clicked Pokemon from API and add them to the clicked Pokemon object
     function loadDetails(pokemon) {
@@ -75,46 +109,46 @@ let pokemonRepository = (function () {
             });
     }
 
-    function makePokemonModal(pokemon) {
-        console.log(pokemon);
-        const modalContainer = document.querySelector('.pokedex-modal');
+    // function makePokemonModal(pokemon) {
+    //     console.log(pokemon);
+    //     const modalContainer = document.querySelector('.pokedex-modal');
 
-        const pokemonName = makePokemonName(pokemon);
-        const pokemonImage = makePokemonImage(pokemon);
-        const pokemonDetails = makePokemonDetails(pokemon);
+    //     const pokemonName = makePokemonName(pokemon);
+    //     const pokemonImage = makePokemonImage(pokemon);
+    //     const pokemonDetails = makePokemonDetails(pokemon);
 
-        modalContainer.appendChild(pokemonName);
-        modalContainer.appendChild(pokemonImage);
-        modalContainer.appendChild(pokemonDetails);
-    }
+    //     modalContainer.appendChild(pokemonName);
+    //     modalContainer.appendChild(pokemonImage);
+    //     modalContainer.appendChild(pokemonDetails);
+    // }
 
-    function makePokemonName(pokemon) {
-        const nameContainer = document.createElement('h3');
-        nameContainer.innerHTML = pokemon.name;
+    // function makePokemonName(pokemon) {
+    //     const nameContainer = document.createElement('h3');
+    //     nameContainer.innerHTML = pokemon.name;
 
-        return nameContainer;
-    }
+    //     return nameContainer;
+    // }
 
-    function makePokemonImage(pokemon) {
-        const imageContainer = document.createElement('img');
-        imageContainer.setAttribute('src', pokemon.imageUrl);
+    // function makePokemonImage(pokemon) {
+    //     const imageContainer = document.createElement('img');
+    //     imageContainer.setAttribute('src', pokemon.imageUrl);
 
-        return imageContainer;
-    }
+    //     return imageContainer;
+    // }
 
-    function makePokemonDetails(pokemon) {
-        const detailsContainer = document.createElement('div');
-        const pokemonHeight = document.createElement('p');
-        const pokemonWeight = document.createElement('p');
+    // function makePokemonDetails(pokemon) {
+    //     const detailsContainer = document.createElement('div');
+    //     const pokemonHeight = document.createElement('p');
+    //     const pokemonWeight = document.createElement('p');
 
-        pokemonHeight.innerHTML = pokemon.height;
-        pokemonWeight.innerHTML = pokemon.weight;
+    //     pokemonHeight.innerHTML = pokemon.height;
+    //     pokemonWeight.innerHTML = pokemon.weight;
 
-        detailsContainer.appendChild(pokemonHeight);
-        detailsContainer.appendChild(pokemonWeight);
+    //     detailsContainer.appendChild(pokemonHeight);
+    //     detailsContainer.appendChild(pokemonWeight);
 
-        return detailsContainer;
-    }
+    //     return detailsContainer;
+    // }
 
     function showModal(pokemon) {
 
@@ -127,8 +161,12 @@ let pokemonRepository = (function () {
         let pokemonHeight = document.querySelector('.pokemon-height');
         pokemonHeight.innerText = 'height : ' + (pokemon.height / 10) + ' m';
 
-
+        document
+            .querySelector('.pokedex-modal-container-hide')
+            .classList.replace('pokedex-modal-container-hide', 'pokedex-modal-container');
     }
+
+    function hideModal(pokemon) { }
 
     return {
         add: add,
@@ -137,7 +175,8 @@ let pokemonRepository = (function () {
         loadList: loadList,
         loadDetails: loadDetails,
         showDetails: showDetails,
-        showModal: showModal
+        showModal: showModal,
+        hideDetails: hideDetails
     };
 })();
 
