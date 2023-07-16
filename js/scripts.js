@@ -49,13 +49,27 @@ let pokemonRepository = (function () {
             console.log(pokemon);
         });
 
+        let modalContainer = document.querySelector('.modal-container');
+
+
         let modal = document.createElement('div');
-            modal.classList.add('modal');
-        
+        modal.classList.add('modal');
+
         let closeButtonElement = document.createElement('button');
         closeButtonElement.classList.add('modal-close');
         closeButtonElement.innerText = 'Close';
         closeButtonElement.addEventListener('click', hideDetails);
+
+        modal.appendChild(closeButtonElement);
+
+        modalContainer.classList.add('is-visible');
+
+        modalContainer.addEventListener('click', function (e) {
+            let target = e.target;
+            if (target === modalContainer) {
+                hideDetails();
+            }
+        });
 
         modal.appendChild(closeButtonElement);
         modal.appendChild(titleElement);
@@ -71,6 +85,7 @@ let pokemonRepository = (function () {
                 hideDetails();
             }
         });
+
     }
 
     function hideDetails() { //used to remove the modal displaying a pokemon's details
@@ -176,6 +191,7 @@ let pokemonRepository = (function () {
         loadDetails: loadDetails,
         showDetails: showDetails,
         showModal: showModal,
+        hideModal: hideModal,
         hideDetails: hideDetails
     };
 })();
