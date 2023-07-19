@@ -1,3 +1,8 @@
+.pokemon-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .button-class {
   background-color: #4caf50;
   /* Green */
@@ -16,10 +21,6 @@
   background-color: white;
   color: black;
   border: 2px solid #4caf50;
-}
-
-.pokedex-modal-container-hide {
-  display: none;
 }
 
 .pokedex-modal-container {
@@ -53,6 +54,10 @@
   border: 2px blue solid;
 }
 
+.pokedex-modal-container-hide {
+  display: none;
+}
+
 /* .modal {
   margin: auto;
   display: inline-block;
@@ -68,7 +73,7 @@
   float: right;
   border: 0;
   background: none;
-  color: #777;
+  color: #ff0000;
   text-decoration: underline;
 }
 
