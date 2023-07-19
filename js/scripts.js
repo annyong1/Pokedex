@@ -62,9 +62,9 @@ let pokemonRepository = (function () {
             hideModal();
         });
 
-        modal.appendChild(closeButtonElement);
+        //modalContainer.appendChild(closeButtonElement);
 
-        modalContainer.classList.add('is-visible');
+        //modalContainer.classList.add('is-visible');
 
         modalContainer.addEventListener('click', function (e) {
             let target = e.target;
