@@ -3,24 +3,18 @@
   flex-wrap: wrap;
 }
 
-.button-class {
-  background-color: #4caf50;
-  /* Green */
-  border: none;
-  color: white;
-  padding: 16px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  -webkit-transition-duration: 0.4s;
-  /* Safari */
-  transition-duration: 0.4s;
-  cursor: pointer;
-  background-color: white;
-  color: black;
-  border: 2px solid #4caf50;
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+li {
+  list-style-type: none;
+  margin: 3px;
+  padding: 3px;
+  width: 130px;
+  min-width: 130px;
 }
 
 .pokedex-modal-container {
@@ -33,14 +27,8 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   margin: auto;
-
-  /* to show it above other content */
   z-index: 999;
-
-  /* to allow scrolling if the screen is not high enough*/
   overflow: auto;
-
-  /* this is used to center the modal */
   display: grid;
   text-align: center;
 }
@@ -58,17 +46,6 @@
   display: none;
 }
 
-/* .modal {
-  margin: auto;
-  display: inline-block;
-  box-sizing: border-box;
-  background: #fff;
-  padding: 15px;
-  width: 100%;
-  max-width: 700px;
-  text-align: left;
-} */
-
 .button {
   float: right;
   border: 0;
@@ -77,19 +54,8 @@
   text-decoration: underline;
 }
 
-/* .modal h1 {
-  margin-top: 0;
+.font-navbar {
+  font-size: 48px;
+  color: black;
+  font-weight: bold;
 }
-
-.modal p {
-  margin-bottom: 0;
-}
-
-#modal-container {
-  display: none;
-} */
-
-/* #modal-container.is-visible { */
-/* CSS for modal container - add your own desired CSS styles here */
-/* display: block;
-} */
