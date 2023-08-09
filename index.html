@@ -27,18 +27,25 @@
   </nav>
 
   <div class="pokemon-list list-group list-group-item container"></div>
-  
-  <div class="pokedex-modal-container-hide">
-    <div class="pokedex-modal">
-      <button type="button" class="button modal-close-button">close</button>
-      <h3 class="modal-title"></h3>
-      <div id="image-container">
-        <img class="pokemon-image">
-      </div>
 
-      <h3 class="pokemon-height"></h3>
+  <div id="modal-container" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-title"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <h2>
+          <div id="modal-title" class="modal-title text-center"></div>
+        </h2>
+        <div class="modal-body">
+          <p id="modal-height" class="modal-height text-center"></p>
+          <img id="modal-image" class="modal-image rounded mx-auto d-block" alt="pokemon">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
     </div>
   </div>
+
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
