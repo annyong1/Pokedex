@@ -1,0 +1,5 @@
+{
+    "eslint.execArgv": null,
+    "eslint.problems.shortenToSingleLine": false,
+    "prettier.withNodeModules": false
+}
