@@ -3,3 +3,16 @@
     "eslint.problems.shortenToSingleLine": false,
     "prettier.withNodeModules": false
 }
+
+{
+    "env": {
+        "es6": true,
+        "browser": true
+    },
+    "extends": [
+        "eslint:recommended"
+    ],
+    "rules": {
+        "quotes": ["error", "single"]
+    }
+}
